@@ -25,8 +25,8 @@ export class AdminComponent implements OnInit {
       if (this.loginForm.invalid) {
         return;
       }
-      if(this.loginForm.controls.email.value == 'dream.big@email.com' && this.loginForm.controls.password.value == 'password') 
-      {this.router.navigate(['user']);}
+      if(this.loginForm.controls.email.value =="godkingemporerJeff@amazon.com" && this.loginForm.controls.password.value == 'Bezos') 
+      {this.router.navigate(['user-profile']);}
        else {
         this.invalidLogin = true; 
       }
