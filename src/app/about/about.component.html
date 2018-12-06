@@ -1,0 +1,122 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <!-- <h1>
+    Welcome to {{ title }}!
+  </h1> -->
+  <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
+</div>
+<button class="testbutton" type="submit"></button>
+<div class="container">
+<div class="animate three">
+            <span>A</span><span>b</span><span>o</span><span>u</span><span>t</span> &nbsp;
+</div>
+<br>
+<br>
+<p>Cosmoknot was founded in 2018 with the purpose of connecting educational resources with aspiring astronauts. Partnering with tech giants like Amazon and SpaceX, Cosmoknot seeks to reinvent and streamline the training process and connect prospective students with instructors. As an extension of NASA, we encourage any prospective applicants to fill out the form below and submit their credentials to our administrative staff. Upon being approved for enrollment, you will have access to your own Cosmoknot student portal that will allow you to post journal entries and view assignments. </p>
+<br>
+<br>
+<br>
+<section id="contact">
+  <div class="containercontact">
+   <h2 class="text-center">Apply</h2>
+   <br>
+   <br>
+   <div class="row">
+    <div class="col-12">
+     <form id='form' action="https://formspree.io/apply.cosmoknot@gmail.com" method="POST">
+      <div class="control-group">
+       <div class="form-group">
+        <label>Name</label>
+        <input 
+         type="text" 
+         class="form-control" 
+         placeholder="Your Name" 
+         id="name" 
+         required 
+         data-validation-required-message="Please enter your name"
+         name="name"
+         >
+        <p class="help-block text-danger"></p>
+       </div>
+      </div>
+      <div class="control-group">
+       <div class="form-group">
+        <label>Email Address</label>
+        <input 
+         type="email" 
+         class="form-control" 
+         placeholder="Your Email" 
+         id="email" 
+         required 
+         data-validation-required-message="Please enter your email"
+         name="_replyto"
+        >
+        <p class="help-block text-danger"></p>
+       </div>
+      </div>
+      <div class="control-group">
+       <div class="form-group">
+        <textarea 
+         class="form-control" 
+         rows="7" 
+         placeholder="List your credentials are the reasons why you are applying here." 
+         id="message" 
+         required 
+         data-validation-required-message="Please leave a message"
+         name="message"
+        ></textarea>
+        <p class="help-block text-danger"></p>
+       </div>
+      </div>
+      <div class="text-center">
+       <div id="success"></div>
+       <button type="submit" class="btn btn-lg btn-black">
+        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        Send Message
+       </button>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </section>
+
+
+<!-- <div class="img__wrap"> -->
+
+<!-- <h2>Here are some links to help you start: 
+  <br>
+  Lorem ipsum dolor sit amet, consectetur 
+  <br>
+  adipiscing elit, sed do eiusmod tempor 
+  <br>
+  incididunt ut labore et dolore magna aliqua. 
+  <br>
+  Ut enim ad minim veniam, quis nostrud 
+  <br>
+  exercitation ullamco laboris nisi ut aliquip 
+  <br>
+  ex ea commodo consequat. Duis aute irure dolor 
+</h2> -->
+<!-- <md-button class="md-icon-button md-primary">
+        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+</md-button> -->
+<!-- <ul>
+  <li>
+<a routerLink="/">About</a>
+</li>
+<li>
+<a routerLink="/placeholder">Placeholder</a>
+</li>
+<li>
+<a routerLink="/login">Login</a>
+</li>
+</ul> -->
+<!-- <md-checkbox>
+#showdetails
+[value]=""
+[checked]="isChecked"
+(change="onChange($event)"
+>ShowDetails</md-checkbox>
+<div *ngIf="showDetails.checked">Some details....</div> -->
+<router-outlet></router-outlet>
