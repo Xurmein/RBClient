@@ -1,4 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+
+import { User } from '../models/user.model';
+import { UserService } from '../service/user.service';
+
+@Component({templateUrl: 'admin.component.html'})
+export class AdminComponent implements OnInit {
+    users: User[] = [];
+
+    constructor(private userService: UserService) {}
+
+    ngOnInit() {
+        this.userService.getAll().pipe(first()).subscribe(users => { 
+            this.users = users; 
+        });
+    }
+}
+
+
+/*import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service'
@@ -14,7 +34,9 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   invalidLogin: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router,
     private authService: AuthenticationService) { }
 
     onSubmit() {
@@ -22,8 +44,8 @@ export class LoginComponent implements OnInit {
       if (this.loginForm.invalid) {
         return;
       }
-      if(this.loginForm.controls.email.value =="godkingemporerJeff@amazon.com" && this.loginForm.controls.password.value == 'Bezos') 
-      {this.router.navigate(['user-profile']);}
+      if(this.loginForm.controls.email.value == 'dream.big@email.com' && this.loginForm.controls.password.value == 'password') 
+      {this.router.navigate(['/']);}
        else {
         this.invalidLogin = true; 
       }
@@ -35,4 +57,4 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
-}
+}*/
