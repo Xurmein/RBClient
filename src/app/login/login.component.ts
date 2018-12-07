@@ -3,15 +3,12 @@ import { FormBuilder, FormGroup, Validators,  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service'
 
-
-
-
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AdminComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted: boolean = false;

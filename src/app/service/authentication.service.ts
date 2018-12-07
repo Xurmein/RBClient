@@ -6,16 +6,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  public URL = 'https://cosmoknotserver.herokuapp.com/user/'
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    return this.http.post<any>('/api/authenticate', { username: username, password: password })
+  login(Username: string, Password: string) {
+    return this.http.post<any>(`${URL}login`, { username: Username, password: Password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        if (user && user.token) {
+        if (user.sessionToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('token', JSON.stringify(user));
         }
 
         return user;
@@ -23,6 +23,6 @@ export class AuthenticationService {
   }
   logout() {
     //remove user from local storage
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 }

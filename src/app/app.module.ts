@@ -6,14 +6,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserProfileComponent,
-   
-    AdminComponent
+    LoginComponent
   ],
   imports: [
     FormsModule,
