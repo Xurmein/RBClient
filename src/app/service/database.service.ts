@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataService {
-  private _dbUrl = 'http://localhost:3000/'
+  private _dbUrl = 'https://cosmoknotserver.herokuapp.com/'
 
   constructor(private _http: HttpClient) { }
 
