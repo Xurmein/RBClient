@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent
     AdminComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     FormsModule,
