@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { Role } from './models/role.model';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { MissionComponent } from './mission/mission.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
 {
   path: 'login',
   component: LoginComponent
+},
+{
+  path: 'mission',
+  component: MissionComponent
 },
 
 // otherwise redirect to home 
