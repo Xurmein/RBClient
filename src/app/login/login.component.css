@@ -1,0 +1,10 @@
+#login-container{
+    padding: 0.5em;
+    margin: 1em;
+    border: 0.1em solid rgba(111, 77, 162, 0.68); /*for testing*/
+    border-radius: 5%;
+    height: fit-content;
+    width: fit-content;
+    text-align: right;
+    background-color: rgba(0, 255, 255, 0.782); /*for testing*/
+}
