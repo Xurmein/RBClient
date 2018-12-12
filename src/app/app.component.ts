@@ -1,30 +1,24 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
-import { Role } from './models/role.model';
-import { User } from './models/user.model';
+//import { Role } from './models/role.model';
+//import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  currentUser: User;
+export class AppComponent implements AfterViewChecked {
+
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    private authenticationService: AuthenticationService,
+    private changeDetector: ChangeDetectorRef
 
-  }
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
-
-  }
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+  ) {}
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
   }
 }

@@ -1,8 +1,42 @@
-<h1>Admin</h1>
+<!--<h1>Admin</h1>
 <p>This page can only be accessed by administrators.</p>
 <div>
     All users from secure (admin only) api end point:
     <ul>
         <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
     </ul>
-</div> 
+</div> -->
+
+<div class="card">
+    <h4 class="card-header">Registered users ({{users.length}})</h4>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="users.length === 0">
+          <tr>
+            <td colspan="4">There are no registered users.</td>
+          </tr>  
+        </tbody>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"
+                      [disabled]="auth.currentUser._id === user._id">
+                <i class="fa fa-trash"></i> Delete
+              </button>
+            </td>
+          </tr>  
+        </tbody>
+      </table>
+    </div>
+  

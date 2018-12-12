@@ -1,21 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+//import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../service/authentication.service';
 
 import { User } from '../models/user.model';
 import { UserService } from '../service/user.service';
 
-@Component({templateUrl: 'admin.component.html'})
+@Component({ templateUrl: 'admin.component.html' })
+
 export class AdminComponent implements OnInit {
-    users: User[] = [];
 
-    constructor(private userService: UserService) {}
+  users: User[] = [];
+  
+  //getUsers() : User;
 
-    ngOnInit() {
-        this.userService.getAll().pipe(first()).subscribe(users => { 
-            this.users = users; 
-        });
+  constructor(public authentication: AuthenticationService,
+    private userService: UserService) { }
+
+  ngOnInit() {
+  this.getUsers();
+  }
+    getUsers() {
+      this.userService.getUsers().subscribe(
+        data => this.users = data,
+        error => console.log(error)
+      );
     }
-}
+  
+    /*deleteUser(user: User) {
+      if (window.confirm('Are you sure you want to delete ' + user.username + '?')) {
+        this.userService.deleteUser(user).subscribe(
+          data => this.toast.setMessage('user deleted successfully.', 'success'),
+          error => console.log(error),
+          () => this.getUsers()
+        );
+      }
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      this.users = users;
+    });*/
+  }
+
 
 
 /*import { Component, OnInit } from '@angular/core';

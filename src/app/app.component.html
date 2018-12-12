@@ -9,23 +9,25 @@
 </div>-->
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
-  </nav>
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/admin" *ngIf="!auth.loggedIn">Admin</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
 <!-- main app container -->
 <nav>
   <a routerLink="/home">Home</a>&nbsp;
-    <a routerLink= "/mission">Mission</a>
-  </nav>
+  <a routerLink="/mission">Mission</a>&nbsp;
+  <a routerLink="/login">Login</a>&nbsp;
+  <a routerLink="/apod">Cosmos Wonders!</a>
+</nav>
 <div class="jumbotron">
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-       
-        
+
+
         <router-outlet></router-outlet>
       </div>
     </div>

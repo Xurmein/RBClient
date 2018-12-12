@@ -10,15 +10,15 @@ import { UserService } from '../service/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  currentUser: User;
-  userFromApi: User;
+export class HomeComponent /*implements OnInit*/ {
+  /*currentUser: User;
+  userFromApi: User;*/
 
   constructor(
-    private userService: UserService,
+    /*private userService: UserService,
     private authenticationService: AuthenticationService
-  ) { 
-    this.currentUser = this.authenticationService.currentUserValue;
+  ) */ 
+    /*this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
@@ -26,6 +26,6 @@ export class HomeComponent implements OnInit {
     .pipe(first()).subscribe(user => {
       this.userFromApi = user;
     });
-  }
+  }*/) {}
 
 }

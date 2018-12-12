@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 import { AuthenticationService } from '../service/authentication.service';
 
 @Injectable({
@@ -8,12 +8,12 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService
   ) { }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot)/*: Observable<boolean> | Promise<boolean> | boolean*/ {
+  canActivate() {
+    return this.authenticationService.isAdmin;
+    /*route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot)/*: Observable<boolean> | Promise<boolean> | boolean {
       const currentUser = this.authenticationService.currentUserValue;
       if (currentUser) {
         if (route.data.role && route.data.role.indexOf(currentUser.role) === -1){
@@ -23,6 +23,6 @@ export class AuthGuard implements CanActivate {
         return true;
       }
    this.router.navigate(['/login'], { queryParams: {returnUrl: state.url }});
-   return false;
+   return false;*/
   }
 }

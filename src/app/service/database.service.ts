@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
-import { Role } from '../models/role.model';
+
+
 
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "Authorization": localStorage.getItem("token")
   })
 }
 
@@ -17,14 +19,14 @@ const httpOptions = {
 export class DataService {
   private _dbUrl = 'https://cosmoknotserver.herokuapp.com/'
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getLogin(role: Role): Observable<Role[]> {
-    return this._http.post<Role[]>(this._dbUrl, role)
+  getLogin(): Observable<User[]> {
+    return this.http.post<User[]>(this._dbUrl, User)
   }
 
   getUsers(): Observable<User[]> {
-    return this._http.get<User[]>(this._dbUrl)
+    return this.http.get<User[]>(this._dbUrl)
   }
 
   /*makeUser(user: User): Observable<User[]> {

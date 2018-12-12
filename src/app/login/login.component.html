@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<!--<h2>Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
       <label for="username">Username</label>
@@ -19,4 +19,33 @@
       <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoK" />
   </div>
   <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-</form>
+</form>-->
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </div>
+          <input class="form-control" type="username" name="username"
+                 formControlName="username" placeholder="Username" autofocus>
+        </div>
+        <div class="input-group" [ngClass]="setClassPassword()">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-key"></i>
+            </span>
+          </div>
+          <input class="form-control" type="password" name="password"
+                 formControlName="password" placeholder="Password">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="loading">
+          <i class="fa fa-sign-in"></i> Login
+        </button>
+      </form>
+    </div>
+  </div>
