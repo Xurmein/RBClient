@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 //import { LoginComponent } from './login/login.component';
-//import { Role } from './models/role.model';
+
 //import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { MissionComponent } from './mission/mission.component';

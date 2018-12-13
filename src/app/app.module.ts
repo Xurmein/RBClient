@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { JwtModule } from '@auth0/angular-jwt';
+//import { JwtModule } from '@auth0/angular-jwt';
+import { JwtInterceptor } from "./helpers/jwt.interceptors";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './service/user.service';
@@ -38,7 +39,7 @@ export function tokenGetter() {
     ApodComponent,
     CreateAccountComponent,
     NavbarComponent,
-    ],
+  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -47,15 +48,16 @@ export function tokenGetter() {
     MaterialModule,
     HttpClientModule,
     MatCardModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter
-      }
-    }),
+    //JwtModule.forRoot({
+    // config: {
+    //tokenGetter: tokenGetter
+    //}
+    //}),
     BrowserAnimationsModule
   ],
-  providers: [HttpClient,  AuthenticationService,
-   UserService, AdminService],
+  providers: [HttpClient, AuthenticationService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    UserService, AdminService],
+  entryComponents: [CreateAccountComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

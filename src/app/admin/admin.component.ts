@@ -12,7 +12,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { CreateAccountComponent } from '../create.account/create.account.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 //import { ProfileComponent } from '../profile/profile.component';
-//import { TransferService } from '../services/transfer.service';
+
 
 @Component({
     selector: 'admin-component',
@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit {
         // private alertService: AlertService,
         public form: MatDialog,
         private router: Router,
-        //public transferService: TransferService
     ) { }
 
     ngOnInit() {
@@ -69,7 +68,7 @@ export class AdminComponent implements OnInit {
 
     handleUser() {
         //if (this.name.includes("@")) {
-            this.user = { email: this.name, password: this.password }
+            //this.user = { email: this.name, password: this.password }
         //} else {
             this.user = { name: this.name, password: this.password }
         }

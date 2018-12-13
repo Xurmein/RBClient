@@ -23,7 +23,7 @@ export class CreateAccountComponent implements OnInit {
   submitted: boolean = false
   user: object
   matcher = new MyErrorStateMatcher
-  skills = [""]
+  skills = ["a, b, c, d, e, f"]
 
   constructor(
     private formBuilder: FormBuilder,

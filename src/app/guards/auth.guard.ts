@@ -7,10 +7,10 @@ export class AuthenticationGuard {
   constructor(private router: Router) { }
 
   checkAccount() {
-    if (sessionStorage.getItem("account") === "spacetravel") {
+    if (sessionStorage.getItem("account") === "admin") {
       this.router.navigate(["/account"])
       return true
-    } else if (sessionStorage.getItem("account") === "admin") {
+    } else if (sessionStorage.getItem("account") === "spacetravel") {
       this.router.navigate(["/aprofile"])
       return true
     } else {
