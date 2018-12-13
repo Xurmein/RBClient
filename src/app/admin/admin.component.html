@@ -1,42 +1,80 @@
-<!--<h1>Admin</h1>
-<p>This page can only be accessed by administrators.</p>
-<div>
-    All users from secure (admin only) api end point:
-    <ul>
-        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-    </ul>
-</div> -->
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+</style>
 
-<div class="card">
-    <h4 class="card-header">Registered users ({{users.length}})</h4>
-    <div class="card-body">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="users.length === 0">
-          <tr>
-            <td colspan="4">There are no registered users.</td>
-          </tr>  
-        </tbody>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{user.username}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.role}}</td>
-            <td>
-              <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"
-                      [disabled]="auth.currentUser._id === user._id">
-                <i class="fa fa-trash"></i> Delete
-              </button>
-            </td>
-          </tr>  
-        </tbody>
-      </table>
+<app-navbar></app-navbar>
+<div class="background">
+<div class="authContainer">
+    
+<div class="authBox">
+  
+  <h2 class="title">Login</h2>
+  <hr />
+  <br />
+  <br />
+  <mat-radio-group [(ngModel)]="typeOfAccount" name="typeOfAccount">
+    <div>Please select a button (required):</div>
+    <br />
+    <mat-radio-button name="usercreate" value="admin" (change)="handleAccountType($event)">Admin</mat-radio-button>
+    <mat-radio-button name="spacetravel" value="spacetravel" (change)="handleAccountType($event)">Apply</mat-radio-button>
+  </mat-radio-group>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <br />
+      <br />
+      <label></label>
+      <input class="unBox" name="name" type="text" placeholder="Username or Email" formControlName="name" (keyup)="handleName($event)" required>
+      <!-- <div *ngIf="name.errors.required">Username is required!</div> -->
     </div>
+    <div>
+      <label></label>
+      <br />
+      <input class="pwBox" name="password" type="password" placeholder="Password" formControlName="password" (keyup)="handlePassword($event)" required>
+    </div>
+    <br />
+    <button class="button" type="submit" [disabled]="typeOfAccount !== 'spacetravel' && typeOfAccount !== 'admin' ">Login</button>
+    <br />
+    <br />
+    <br />
+    <label>Don't have an account?</label>
+    <button class="signUp" mat-button (click)="openForm()">Sign Up!</button>
+  </form>
+</div>
+</div>
+</div>
+
+
+<!--<div class="card">
+        <h4 class="card-header">Registered users ({{users.length}})</h4>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="users.length === 0">
+              <tr>
+                <td colspan="4">There are no registered users.</td>
+              </tr>  
+            </tbody>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                  <button class="btn btn-sm btn-danger" (click)="deleteUser(user)"
+                          [disabled]="auth.currentUser._id === user._id">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>-->
+
   

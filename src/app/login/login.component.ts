@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
+
+/*import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 //import { first } from 'rxjs/operators';
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
   //loading = false;
   submitted = false;
   //returnUrl: string;
- // error = '';*/
+ // error = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,7 +61,7 @@ export class LoginComponent implements OnInit {
       );
 
     // get return url from route parameters or default to '/'
-    /*this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   get f() { return this.loginForm.controls; }
 
@@ -81,6 +83,6 @@ export class LoginComponent implements OnInit {
         error => {
           this.error = error;
           this.loading = false;
-        });*/
+        });
   }
-}
+}*/

@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataService {
-  private _dbUrl = 'https://cosmoknotserver.herokuapp.com/'
+  private _dbUrl = 'https://cosmoknotserver.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 

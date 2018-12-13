@@ -1,86 +1,123 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //import { first } from 'rxjs/operators';
+
+//import { AlertService } from '../services/alert.service';
+import { UserService } from "../service/user.service";
+import { AdminService } from "../service/admin.service";
 import { AuthenticationService } from '../service/authentication.service';
 
-import { User } from '../models/user.model';
-import { UserService } from '../service/user.service';
-
-@Component({ templateUrl: 'admin.component.html' })
-
-export class AdminComponent implements OnInit {
-
-  users: User[] = [];
-  
-  //getUsers() : User;
-
-  constructor(public authentication: AuthenticationService,
-    private userService: UserService) { }
-
-  ngOnInit() {
-  this.getUsers();
-  }
-    getUsers() {
-      this.userService.getUsers().subscribe(
-        data => this.users = data,
-        error => console.log(error)
-      );
-    }
-  
-    /*deleteUser(user: User) {
-      if (window.confirm('Are you sure you want to delete ' + user.username + '?')) {
-        this.userService.deleteUser(user).subscribe(
-          data => this.toast.setMessage('user deleted successfully.', 'success'),
-          error => console.log(error),
-          () => this.getUsers()
-        );
-      }
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-    });*/
-  }
-
-
-
-/*import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,  } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../service/authentication.service'
-
-
-
+//import { User } from "../models/user.model";
+import { CreateAccountComponent } from '../create.account/create.account.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+//import { ProfileComponent } from '../profile/profile.component';
+//import { TransferService } from '../services/transfer.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+    selector: 'admin-component',
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+    loginForm: FormGroup;
+    returnUrl: string;
+    name: string;
+    password: string;
+    typeOfAccount: string;
+    user;
+    dialogReturn: MatDialogRef<CreateAccountComponent>
 
-  loginForm: FormGroup;
-  submitted: boolean = false;
-  invalidLogin: boolean = false;
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private AdminService: AdminService,
+        private UserService: UserService,
+        // private alertService: AlertService,
+        public form: MatDialog,
+        private router: Router,
+        //public transferService: TransferService
+    ) { }
 
-  constructor(
-    private formBuilder: FormBuilder, 
-    private router: Router,
-    private authService: AuthenticationService) { }
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            name: [this.name, Validators.required],
+            password: [this.password, Validators.required]
+        });
 
-    onSubmit() {
-      this.submitted = true;
-      if (this.loginForm.invalid) {
-        return;
-      }
-      if(this.loginForm.controls.email.value == 'dream.big@email.com' && this.loginForm.controls.password.value == 'password') 
-      {this.router.navigate(['/']);}
-       else {
-        this.invalidLogin = true; 
-      }
+        // reset login status
+        // this.authenticationService.logout();
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-}*/
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
+
+    handleName(event: any) {
+        this.name = event.target.value
+    }
+
+    handlePassword(event: any) {
+        this.password = event.target.value
+    }
+
+    handleAccountType(event) {
+        this.typeOfAccount = event.value
+    }
+
+    handleUser() {
+        //if (this.name.includes("@")) {
+            this.user = { email: this.name, password: this.password }
+        //} else {
+            this.user = { name: this.name, password: this.password }
+        }
+    
+
+    redirect() {
+        if (sessionStorage.getItem("account") === "spacetravel") {
+            this.router.navigate(['/aprofile'])
+        } else {
+            this.router.navigate(["/uprofile"])
+        }
+    }
+
+    onSubmit() {
+        this.handleUser()
+        if (this.typeOfAccount === "spacetravel") {
+            this.UserService.login(this.user).subscribe(res => {
+                console.log(res),
+                sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                    "id", res.user.id), sessionStorage.setItem(
+                        "account", this.typeOfAccount), this.redirect()
+            })
+        } else {
+            this.AdminService.login(this.user).subscribe(res => { 
+                console.log(res), 
+                sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                    "id", res.adminID), sessionStorage.setItem(
+                        "account", this.typeOfAccount), this.redirect() })
+        }
+
+    }
+
+    userRegister(user) {
+        if (sessionStorage.getItem("account") === "spacetravel") {
+            this.UserService.register(user).subscribe(res => { 
+                console.log(res), sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                    "id", res.username), this.redirect() })
+        } else {
+            this.AdminService.register(user).subscribe(res => { 
+                console.log(res), sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                    "id", res.adminID), this.redirect() })
+        }
+    }
+
+    openForm() {
+        this.dialogReturn = this.form.open(CreateAccountComponent);
+
+        this.dialogReturn.afterClosed().subscribe(res => { console.log(res), this.userRegister(res) })
+    }
+
+}
