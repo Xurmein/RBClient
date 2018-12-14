@@ -7,7 +7,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
 
     login(user: object) {
-        return this.http.post<any>("https://cosmoknotserver.herokuapp.com/user/login", user )
+        return this.http.post<any>("http://localhost:3000/user/login", user )
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {

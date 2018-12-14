@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   nasa_api_key: "EvU3DzditQY4ezLs3w0QvGSLXlQOyF5NsKs2tfZM"
 };
-let APIURL = '';
+/*let APIURL = '';
 
 switch (window.location.hostname) {
    // this is the local host name of your react app

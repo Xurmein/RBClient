@@ -23,7 +23,9 @@ export class CreateAccountComponent implements OnInit {
   submitted: boolean = false
   user: object
   matcher = new MyErrorStateMatcher
-  skills = ["a, b, c, d, e, f"]
+  qualities = ["Intelligence", "Adaptability",
+    "Physical Condition", "Mental Endurance",
+    "Education"]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,8 +42,9 @@ export class CreateAccountComponent implements OnInit {
     });
 
     this.UserCreateForm = this.formBuilder.group({
-      username: new FormControl("",  Validators.required),
+      username: new FormControl("", Validators.required),
       password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+      email: new FormControl("", Validators.required)
     })
   }
   st() {

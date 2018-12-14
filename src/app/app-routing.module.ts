@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
-//import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create.account/create.account.component';;
 
 //import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'admin', 
   component: AdminComponent
 },
-/*{
-  path: 'login',
-  component: LoginComponent,
+{
+  path: 'register',
+  component: CreateAccountComponent,
   
-},*/
+},
 {
   path: 'mission',
   component: MissionComponent

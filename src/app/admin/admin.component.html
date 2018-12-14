@@ -1,8 +1,8 @@
-<style>
+<!-- <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins');
-</style>
+</style> -->
 
-<app-navbar></app-navbar>
+<!--<app-navbar></app-navbar>-->
 <div class="background">
 <div class="authContainer">
     
@@ -23,7 +23,7 @@
       <br />
       <br />
       <label></label>
-      <input class="unBox" name="name" type="text" placeholder="Username or Email" formControlName="name" (keyup)="handleName($event)" required>
+      <input class="unBox" name="name" type="text" placeholder="Username" formControlName="name" (keyup)="handleName($event)" required>
       <!-- <div *ngIf="name.errors.required">Username is required!</div> -->
     </div>
     <div>
@@ -36,8 +36,8 @@
     <br />
     <br />
     <br />
-    <label>Don't have an account?</label>
-    <button class="signUp" mat-button (click)="openForm()">Sign Up!</button>
+    <label>Want to Space Travel?</label>
+    <button class="signUp" mat-button (click)="openForm()">Register!</button>
   </form>
 </div>
 </div>

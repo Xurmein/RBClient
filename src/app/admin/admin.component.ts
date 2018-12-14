@@ -11,6 +11,7 @@ import { AuthenticationService } from '../service/authentication.service';
 //import { User } from "../models/user.model";
 import { CreateAccountComponent } from '../create.account/create.account.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { User } from 'app/models';
 //import { ProfileComponent } from '../profile/profile.component';
 
 
@@ -22,7 +23,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 export class AdminComponent implements OnInit {
     loginForm: FormGroup;
     returnUrl: string;
-    name: string;
+    username: string;
     password: string;
     typeOfAccount: string;
     user;
@@ -40,7 +41,7 @@ export class AdminComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            name: [this.name, Validators.required],
+            name: [this.username, Validators.required],
             password: [this.password, Validators.required]
         });
 
@@ -55,7 +56,7 @@ export class AdminComponent implements OnInit {
     get f() { return this.loginForm.controls; }
 
     handleName(event: any) {
-        this.name = event.target.value
+        this.username = event.target.value
     }
 
     handlePassword(event: any) {
@@ -68,14 +69,14 @@ export class AdminComponent implements OnInit {
 
     handleUser() {
         //if (this.name.includes("@")) {
-            //this.user = { email: this.name, password: this.password }
+        //this.user = { email: this.name, password: this.password }
         //} else {
-            this.user = { name: this.name, password: this.password }
-        }
-    
+        this.user = { name: this.username, password: this.password }
+    }
+
 
     redirect() {
-        if (sessionStorage.getItem("account") === "spacetravel") {
+        if (sessionStorage.getItem("account") === "admin") {
             this.router.navigate(['/aprofile'])
         } else {
             this.router.navigate(["/uprofile"])
@@ -84,32 +85,38 @@ export class AdminComponent implements OnInit {
 
     onSubmit() {
         this.handleUser()
-        if (this.typeOfAccount === "spacetravel") {
-            this.UserService.login(this.user).subscribe(res => {
+        if (this.typeOfAccount === "admin") {
+            this.AdminService.login(this.user).subscribe(res => {
                 console.log(res),
-                sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
-                    "id", res.user.id), sessionStorage.setItem(
-                        "account", this.typeOfAccount), this.redirect()
+                    sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                        "id", res.adminID), sessionStorage.setItem(
+                            "account", this.typeOfAccount), this.redirect()
             })
         } else {
-            this.AdminService.login(this.user).subscribe(res => { 
-                console.log(res), 
-                sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
-                    "id", res.adminID), sessionStorage.setItem(
-                        "account", this.typeOfAccount), this.redirect() })
+            this.UserService.login(this.user).subscribe(res => {
+                console.log(res),
+                    sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
+                        "id", res.username), sessionStorage.setItem(
+                            "account", this.typeOfAccount), this.redirect()
+            })
         }
 
     }
 
     userRegister(user) {
-        if (sessionStorage.getItem("account") === "spacetravel") {
-            this.UserService.register(user).subscribe(res => { 
+        if (sessionStorage.getItem("account") === "admin") {
+            this.AdminService.register(user).subscribe(res => {
                 console.log(res), sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
-                    "id", res.username), this.redirect() })
+                    "id", res.adminID), sessionStorage.setItem(
+                        "account", this.typeOfAccount), this.redirect()
+            })
         } else {
-            this.AdminService.register(user).subscribe(res => { 
+            this.UserService.register(user).subscribe(res => {
                 console.log(res), sessionStorage.setItem("token", res.sessionToken), sessionStorage.setItem(
-                    "id", res.adminID), this.redirect() })
+                    "id", res.username), sessionStorage.setItem(
+                        "account", this.typeOfAccount),
+                    this.redirect()
+            })
         }
     }
 
