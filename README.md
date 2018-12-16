@@ -1,39 +1,4 @@
 Associated DB url = https://cosmoknotserver.herokuapp.com/
-<br>
-Models:
-1) { 
-    "user":{
-      "username": STRING,
-      "password": STRING,
-      "is_admin": BOOLEAN,
-      "adminID": STRING(admin email) 
-      }
-    }
-                  
-2) { 
-    "content":{
-       "creator": STRING (user or admin that made userpost), 
-       "label":STRING,
-       "content_text":STRING 
-       }
-   }
-
-
-Unprotected end-points:
-    register new admin: `${DB_url}/user/register/admin`;
-    login as admin/user: `${DB_url}/user/login`;
-    
-Protected end-points:
-    create new user: `${DB_url}/user/register/new_user`;
-    create new post: `${DB_url}/myaccount/new_post`;
-    get all user's posts: `${DB_url}/myaccount/userposts`;
-    get one of user's posts: `${DB_url}/myaccount/userposts/:id`;
-    get all users created by admin: `${DB_url}/user/sub-users`;
-    get one user created by admin: `${DB_url}/user/sub-users/:id`;
-    update user account info: `${DB_url}/user/update_account/:id`;
-    delete user account: `${DB_url}/user/delete_account/:id`;
-
-<hr />
 
 # RbClient
 
