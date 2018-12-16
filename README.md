@@ -11,7 +11,7 @@ Models:
     }
                   
 2) { 
-    "userpost":{
+    "content":{
        "creator": STRING (user or admin that made userpost), 
        "label":STRING,
        "content_text":STRING 
